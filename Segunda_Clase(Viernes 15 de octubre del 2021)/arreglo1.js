@@ -9,7 +9,6 @@ const dishes =
 ]
 
 const anotherdish = [
-
     "Arroz con pollo",
     "Tonga",
     "Guata con lengua"
@@ -18,3 +17,4 @@ const anotherdish = [
 const uniondishes = [ ...dishes, ...anotherdish]
 console.log(uniondishes)
 console.log(dishes.includes("arroz con pollo"));
+
