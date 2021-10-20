@@ -10,3 +10,4 @@ favorite_dish.forEach( favorite_dish => {
     console.log(favorite_dish.toUpperCase());
 
 });
+
