@@ -19,8 +19,7 @@ const favorite_dish =
 ]
 
 /*4. Recorrer el arreglo definido en la opción anterior y mostrarlo aplicando un do-while.*/
-const uniondishes = { ...favorite_dish}
 
 do{
-    console.log(uniondishes)
-} while (uniondishes );
+    console.table(favorite_dish)
+} while (favorite_dish);
