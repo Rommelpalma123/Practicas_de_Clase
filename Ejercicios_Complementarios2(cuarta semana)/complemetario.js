@@ -1,6 +1,6 @@
 // creacion de arreglos o arrays
 
-const header = [
+const headers = [
 
     {
         id: 1,
@@ -24,7 +24,7 @@ const rooms = [
     {
         id: 1,
         name: '15',
-        idherder: 1
+        idheader: 1
     },
     {
         id: 2,
@@ -91,6 +91,8 @@ async function found_Reservation(id){
     }
     return people;
 } 
+
+
 async function found_room(id){
 
     // creamos una variable author luego le damos el valor del arrglo para buscar un author por su id
@@ -101,13 +103,28 @@ async function found_room(id){
     {
         // creamos otra variable para generar un error en caso que no se encuentre el libro 
         const error = new Error();
-        error.message = "author no found";
+        error.message = "room no found";
         throw error;
     }
     return room;
 
 }
-//console.log(found_Reservation(1));
+
+
+async function found_headers(id){
+
+    // creamos una variable author luego le damos el valor del arrglo para buscar un author por su id
+    const header = headers.find((header) => header.id === id)
+
+    if(!header)
+    {
+        // creamos otra variable para generar un error en caso que no se encuentre el libro 
+        const error = new Error();
+        error.message = "header no found";
+        throw error;
+    }
+    return header;
+}
 
 
 
@@ -123,7 +140,8 @@ async function found_room(id){
         // en el try es donde se va a ejecutar todo, decimos que en search_book_by_id busque un libro definido
         const people = await found_Reservation(1);
         const room = await found_room(people.idroom);
-        people.room = room;
+        const header = await found_headers(room.idheader);
+        people.room = header;
         console.log(people);
     // con el catch enviaremos el error, en caso de no encontrar el libro 
     }catch (err) 
