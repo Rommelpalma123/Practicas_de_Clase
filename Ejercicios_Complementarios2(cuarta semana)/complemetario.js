@@ -114,7 +114,7 @@ async function found_room(id){
 async function found_headers(id){
 
     // creamos una variable author luego le damos el valor del arrglo para buscar un author por su id
-    const header = headers.find((header) => header.id === id)
+    const header = headers.find((header) =>{ return header.id === id})
 
     if(!header)
     {
@@ -146,6 +146,6 @@ async function found_headers(id){
     // con el catch enviaremos el error, en caso de no encontrar el libro 
     }catch (err) 
     {
-        console.log(err.message);
+        console.log(err.message="Client not fount now");
     }
 })();
