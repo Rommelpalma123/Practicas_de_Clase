@@ -1,70 +1,66 @@
-const { response } = require('express');
+const { response } = require('express')
 const { Producto } = require('../models')
 
-class controllerProducto
-{
-    getProducts = async ( req, res = response ) =>
-    {
-        // GET http://localhost:3000/productos   ?limite=100?desde=1
-        const { limite = 10, desde = 0 } =req.query; 
-        const query = { estado:true }
 
-        const [ total, productos ] = await Promise.all([
-        
+const obtenerProductos= async (req, res = response )=>{
+
+    //GET http://localhost:3000/productos   ?limite=100?desde=1
+    const { limite = 10 , desde=0 } =  req.query;
+    const query = { estado:true };
+
+    const [ total, productos ] = await Promise.all([
         Producto.countDocuments(query),
-        // definimos rango de productos que se quiere mostrar 
         Producto.find(query).skip(Number(desde)).limit(Number(limite))
+    ])
 
-        ])
-        // devulve todos producto
-        res.json({ 
+    res.json({
+    total, 
+    productos
+    })
+    
+}
+const obtenerProducto= async (req, res =  response)=>{
+    const {id} = req.params
+    const producto=  await Producto.findById(id);
+    res.json(producto);
+}
+const crearProducto= async (req, res = response)=>{
+    const { estado, usuario, ...body } =  req.body;
+    
+    const existeProducto =  await Producto.findOne({nombre: body.nombre})
 
-            total,
-            productos
+    if (existeProducto)
+    {
+        return res.status(400).json({
+            msg:`El producto ${ existeProducto.nombre } ya existe`
         })
     }
 
-    getProduct = async ( req, res = response ) => 
-    {
-        const { id } = req.params
-        const producto = await Producto.findById(id);
-        res.json(producto); 
+    const data = {
+        ...body,
+        nombre: body.nombre
     }
 
-    createProduct = async ( req, res = response ) => 
-    {
-        const { estado, usuario, ...body } = req.body
-        // encontrar nombre por un solo nombre 
-        const productorepetido = await Producto.findOne({nombre: body.nombre})
-        if(productorepetido)
-        {
-            return res.status(400).json({
+    const producto = new Producto(data);
 
-                msg:`El producto ${productorepetido.nombre} ya existe`
-            })
-        }
-        const data = 
-        {
-            ...body,
-            nombre: body.nombre
-        }
-
-        const product = new Producto(data);
-        const newProduct = await product.save();
-        res.json(newProduct);
-    }
-
-    updateProduct = async ( req, res = response ) => 
-    {}
-    deleteProduct = async ( req, res = response ) => 
-    {}
-
+    const nuevoProducto =  await producto.save();
+    res.status(201).json(nuevoProducto);
+}
+const actualizarProducto= async (req, res=response)=>{
+    const {id} = req.params;
+    const { estado, ...data } =  req.body;
+    const productoModificado =  await Producto.findByIdAndUpdate(id,data, {new: true} )
+    res.json(productoModificado);
+}
+const borrarProducto= async (req, res = response)=>{
+    const {id} = req.params;
+    const productoBorrado =  await Producto.findByIdAndUpdate(id, {estado:false}, {new:true} );
+    res.json(productoBorrado);
 }
 
 module.exports = {
-
-    obtenerProductos,
     obtenerProducto,
+    obtenerProductos,
     crearProducto,
     actualizarProducto,
     borrarProducto
