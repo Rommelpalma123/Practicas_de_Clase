@@ -1,4 +1,4 @@
-const Producto = require('./producto.model')
+const Producto = require('./producto')
 const Categoria = require('./categorias')
 
 

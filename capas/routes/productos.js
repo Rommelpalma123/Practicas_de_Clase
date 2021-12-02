@@ -2,10 +2,10 @@ const { Router } = require('express')
 const { check } =  require('express-validator')
 
 const { crearProducto,
-     obtenerProducto, 
-     obtenerProductos,
-     actualizarProducto,
-     borrarProducto } = require('../controllers').Producto;
+    obtenerProducto, 
+    obtenerProductos,
+    actualizarProducto,
+    borrarProducto } = require('../controllers').Producto;
 
 const { validarCampos } = require('../middlewares')
 
