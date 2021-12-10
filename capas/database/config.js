@@ -4,7 +4,7 @@ const  mongoose =  require('mongoose');
 const dbConnection = async ()=>{
 
     try{
-        await mongoose.connect( process.env.MONGODB_CNN);
+        await mongoose.connect( process.env.mongodb_cnn);
         console.log('Base de datos escuchando')
     }
     catch(error){
