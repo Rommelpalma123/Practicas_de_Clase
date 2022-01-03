@@ -1,5 +1,5 @@
-const server = require('./src/app');
+const server  =  require('./src/app');
 
-server.listen(procces.env.PORT, ()=>{
-    console.log(`server run on ${procces.env.PORT}`);
-} )
+server.listen(process.env.PORT, ()=>{
+    console.log(`Servidor monolithic corriendo ${process.env.PORT}`)
+})
