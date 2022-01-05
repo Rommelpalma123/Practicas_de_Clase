@@ -2,7 +2,6 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css' ;
-import "./App.css"
 import Home from './pages/Home';
 import AddEdit from './pages/AddEdit';
 import About from './pages/About';
