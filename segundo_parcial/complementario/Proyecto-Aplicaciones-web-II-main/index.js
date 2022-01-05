@@ -25,8 +25,7 @@ const app = express();
 const SESSION_FILE_PATH = './session.json';
 let client; // variables globales
 let sessionData; // variables globales*/
-app.use('/api/users', require('./routes/user'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/alluser', routes2);
 app.use(express.json());
 app.use(routes, routes1, routes2);
 app.use(cors())

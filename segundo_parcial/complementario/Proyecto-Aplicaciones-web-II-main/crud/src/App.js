@@ -1,26 +1,22 @@
-import './App.css';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css' ;
-import Home from './pages/Home';
-import AddEdit from './pages/AddEdit';
-import About from './pages/About';
-
-
-
+import AllUsers from './Component/AllUsers';
+import AddUser from './Component/AddUser';
+import EditUser from './Component/EditUser';
+import NavBar from './Component/NavBar';
+import NotFound from './Component/NotFound'; 
+import CodeForInterview from './Component/CodeForInterview';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
     <BrowserRouter>
-    <div className="App">
-      <ToastContainer />
+      <NavBar />
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/add" component={AddEdit} />
-        <Route path="/update/:id" component={AddEdit} />
-        <Route path="/about" component={About} />
+        <Route exact path="/" component={CodeForInterview} />
+        <Route exact path="/all" component={AllUsers} />
+        <Route exact path="/add" component={AddUser} />
+        <Route exact path="/edit/:id" component={EditUser} />
+        <Route component={NotFound} />
       </Switch>
-    </div>
     </BrowserRouter>
   );
 }

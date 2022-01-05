@@ -1,9 +1,15 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
 
-const usuarioSchema = new Schema({
-    nombre: { type: String},
-    description: { type: String}
+// how our document look like
+const uuuserSchema = mongoose.Schema({
+    name: String,
+    username: String,
+    email: String,
+    phone: Number
 });
 
-module.exports = mongoose.model('Usuario', usuarioSchema);
+
+// we need to turn it into a model
+const postUser = mongoose.model('newuser', uuuserSchema);
+
+module.export = postUser;
