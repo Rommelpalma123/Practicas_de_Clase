@@ -37,5 +37,4 @@ const messagenew = (req, res) =>
         }
     })
 }
-
 module.exports = { message, messagenew, messeagesync };
