@@ -1,15 +1,19 @@
 version: "3"
 
 services: 
-  api:
-    build: .
-    depends_on:
-      - mongo
-    environment:
-      - PORT=9000
-      - url=mongodb://mongo:27017/chat
+  monolitico:
+    build: ./monolitico
+  user:
+    build: ./microservicios/user
+  chat:
+    build: ./microservicios/chat
+  nginx:
+    image: nginx:latest
     ports:
-      - "9000:9000"
-
-  mongo:
-    image: mongo
+      - "8080:8080"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - monolitico
+      - user
+      - chat

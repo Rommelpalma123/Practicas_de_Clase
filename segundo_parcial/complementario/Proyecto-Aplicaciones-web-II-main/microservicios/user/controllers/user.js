@@ -1,5 +1,9 @@
 const  User = require('../models/user');
 
+const allUsers = async (req, res) =>
+{
+    res.send('ruta usuario microservicio');
+}
 // Get all users
 const getUsers = async (request, response) => {
     // Step -1 // Test API

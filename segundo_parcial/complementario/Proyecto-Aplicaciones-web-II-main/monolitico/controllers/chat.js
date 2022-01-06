@@ -3,7 +3,7 @@ const Messages = require('../models/chat')
 
 const message = (req, res) =>
 {
-    res.send(200).send("esta correcto el mensaje") 
+    res.send("esta correcto el mensaje") 
 }
 
 const messeagesync = (req, res) =>
